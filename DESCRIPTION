@@ -1,14 +1,14 @@
 Package: powertools
 Type: Package
-Title: powertools: Power and Sample Size Tools
+Title: Power and Sample Size Tools
 Version: 0.1.0
 Authors@R: c(
     person(given = "Catherine M.", family = "Crespi", email = "ccrespi@ucla.edu", role = c("aut", "cre")),
     person(given = "Zichen", family = "Liu", email = "zichenliu@ucla.edu", role = "aut"),
     person(given = "Kristen M.", family = "McGreevy", role = "aut"))
 Maintainer: Catherine M. Crespi <ccrespi@ucla.edu>
-Description: This package contains functions for performing power and sample size calculations 
-    for a variety of different study designs and outcomes. It is a companion to the 
+Description: Functions for performing power and sample size calculations 
+    for a variety of different study designs and outcomes. A companion to the 
     book 'Power and Sample Size in R' (2025) by Catherine M. Crespi, CRC Press/Chapman & Hall.
 URL: https://github.com/powerandsamplesize/powertools
 BugReports: https://github.com/powerandsamplesize/powertools/issues
