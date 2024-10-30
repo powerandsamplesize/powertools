@@ -11,9 +11,7 @@ The goal of `powertools` is to provide functions for performing power
 and sample size calculations for a variety of different study designs
 and outcomes. This package accompanies the book “Power and Sample Size
 in R” (2025) by Catherine M. Crespi, CRC Press/Chapman & Hall. This
-package loads all R packages that are used in the textbook and provides
-new functions for sample size and power calculations that did not
-previously exist.
+package provide a variety of functions for sample size and power calculations.
 
 ## Installation
 
