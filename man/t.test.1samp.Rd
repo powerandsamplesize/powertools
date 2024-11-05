@@ -4,7 +4,7 @@
 \alias{t.test.1samp}
 \title{Power calculation for one-sample t test}
 \usage{
-\method{t}{test.1samp}(
+t.test.1samp(
   N = NULL,
   delta = NULL,
   sd = 1,

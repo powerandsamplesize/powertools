@@ -30,7 +30,7 @@ coprimary.z(
 
 \item{sd}{A vector of length K of the standard deviations of the K outcomes.}
 
-\item{rho}{A vector of length 0.5*K*(K-1) of the correlations among the K outcomes.}
+\item{rho}{A vector of length 0.5\emph{K}(K-1) of the correlations among the K outcomes.}
 
 \item{alpha}{The significance level or type 1 error rate; defaults to 0.025. A one-sided test is assumed.}
 

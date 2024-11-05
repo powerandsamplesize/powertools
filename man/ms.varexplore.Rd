@@ -19,12 +19,12 @@ This function can be used to help select a plausible value for the variance/SD o
 random intercept for site in a multisite trial with a binary outcome.
 Based on user-supplied values of the outcome proportions in the two conditions,
 this function outputs, for a range of possible values of the SD, the intervals
-within which we expect about 95% of the site-specific
+within which we expect about 95\% of the site-specific
 odds ratios to lie.
 }
 \details{
 In a multisite trial design, participants are randomized to conditions within site.
- The use of this function is illustrated in Crespi CM (2025) Power and Sample Size in R.
+The use of this function is illustrated in Crespi CM (2025) Power and Sample Size in R.
 }
 \examples{
 ms.varexplore(pc = 0.1, pt = 0.2)

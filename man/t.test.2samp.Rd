@@ -4,7 +4,7 @@
 \alias{t.test.2samp}
 \title{Power calculation for two-sample t test}
 \usage{
-\method{t}{test.2samp}(
+t.test.2samp(
   n1 = NULL,
   n.ratio = 1,
   delta = NULL,

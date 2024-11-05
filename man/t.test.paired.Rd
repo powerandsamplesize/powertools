@@ -4,7 +4,7 @@
 \alias{t.test.paired}
 \title{Power calculation for paired t test}
 \usage{
-\method{t}{test.paired}(
+t.test.paired(
   N = NULL,
   delta = NULL,
   sd1 = 1,
