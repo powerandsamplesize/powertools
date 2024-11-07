@@ -42,7 +42,7 @@ A list of the arguments (including the computed one).
 }
 \description{
 This function performs power and sample size calculations for a two-sample z test. which is
-analogous to a two-sample ttest.but with the variances assumed to be known.
+analogous to a two-sample t test but with the variances assumed to be known.
 The function allows for unequal sample sizes and/or variances in the two groups.
 This function is provided largely for pedagogical purposes; in general,
 for real studies, the two-sample t test procedure should be used.
