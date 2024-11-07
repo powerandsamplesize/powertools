@@ -62,7 +62,7 @@ crt.parallel.cont <- function (m = NULL, m.sd = 0, J1 = NULL, J.ratio = 1, delta
 
   # feasibility check J > rho * Nindep
   if (is.null(m)) {
-    out <- t.test.2samp(n1 = NULL, delta = delta, sd1 = sd, power = power,
+    out <- ttest.2samp(n1 = NULL, delta = delta, sd1 = sd, power = power,
                         sides = sides, v = TRUE)
     Nindep <- out[[1]][1] + out[[1]][2]
     iccavg <- mean(icc1, icc2)

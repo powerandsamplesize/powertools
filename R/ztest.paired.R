@@ -1,30 +1,32 @@
-#' Power calculation for paired t test
+#' Power calculation for paired z test
 #'
 #' @description
-#' Performs power and sample size calculations for a paired t test. Can solve for power,
-#' N, delta or alpha.
+#' This function performs power and sample size calculations for a paired z test which is
+#' analogous to a paired t test with variance assumed to be known.
+#' This function is provided largely for pedagogical purposes; in general,
+#' for real studies, the paired t test procedure should be used.
 #'
 #'
-#' @param N The sample size; if the observations are paired differences, this is the number of pairs.
+#' @param N The sample size; the number of pairs.
 #' @param delta DeltaA (the true mean difference) - Delta0 (the mean difference under the null).
 #' @param sd1 The pre standard deviation; defaults to 1.
 #' @param sd2 The post standard deviation; defaults to 1.
-#' @param rho The correlation between pre and post measurements on the same individual.
+#' @param rho The correlation between pre and post measurements on the same individual; defaults to 0.
 #' @param alpha The significance level (type 1 error rate); defaults to 0.05.
 #' @param power The specified level of power.
 #' @param sides Either 1 or 2 (default) to specify a one- or two- sided hypothesis test.
 #' @param v Either TRUE for verbose output or FALSE (default) to output computed argument only.
 #'
 #' @return A list of the arguments (including the computed one).
-#' @export t.test.paired
+#' @export
 #'
 #' @examples
-#' t.test.paired(N = NULL, delta = 4, sd1 = 10, sd2 = 10, rho = 0.4, power = 0.8, sides = 2)
+#' ztest.paired(N = NULL, delta = 4, sd1 = 10, sd2 = 10, rho = 0.4, power = 0.8, sides = 2)
 
-t.test.paired <- function (N = NULL, delta = NULL,
-                           sd1 = 1, sd2 = 1, rho = NULL,
-                           alpha = 0.05, power = NULL, sides = 2,
-                           v = FALSE) {
+ztest.paired <- function (N = NULL, delta = NULL,
+                          sd1 = 1, sd2 = 1, rho = NULL,
+                          alpha = 0.05, power = NULL, sides = 2,
+                          v = FALSE) {
 
   # Check if the arguments are specified correctly
   check.many(list(N, delta, alpha, power), "oneof")
@@ -41,21 +43,18 @@ t.test.paired <- function (N = NULL, delta = NULL,
   # Calculate the standard deviation of differences within pairs
   sigmad <- sqrt(sd1^2 + sd2^2 - 2 * rho * sd1 * sd2)
 
-  # Calculate df and ncp
+  # Calculate power
   if (sides == 1)
     p.body <- quote({
       d <- abs(delta) / sigmad
-      df <- N - 1
-      stats::pt(stats::qt(alpha, df, lower.tail = FALSE), df,
-                sqrt(N) * d, lower.tail = FALSE)
+      stats::pnorm(stats::qnorm(alpha) + sqrt(N) * d)
     })
+
   else if (sides == 2)
     p.body <- quote({
-      d <- abs(delta)
-      ncp <- sqrt(N) * d / sigmad
-      df2 <- N - 1
-      stats::pf(stats::qf(alpha, 1, df2, lower.tail = FALSE),
-                1, df2, ncp^2, lower.tail = FALSE)
+      d <- delta / sigmad
+      stats::pnorm(stats::qnorm(alpha / 2) + sqrt(N) * d) +
+        stats::pnorm(stats::qnorm(alpha / 2) - sqrt(N) * d)
     })
 
   NOTE <- "N is the number of pairs"
@@ -81,7 +80,7 @@ t.test.paired <- function (N = NULL, delta = NULL,
   else stop("internal error")
 
   # Generate output text
-  METHOD <- "Paired t test power calculation"
+  METHOD <- "Paired z test power calculation"
   sd <- c(sd1, sd2)
 
   # Print output as a power.htest object
