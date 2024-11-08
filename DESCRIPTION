@@ -5,11 +5,17 @@ Version: 0.1.0
 Authors@R: c(
     person(given = "Catherine M.", family = "Crespi", email = "ccrespi@ucla.edu", role = c("aut", "cre")),
     person(given = "Zichen", family = "Liu", email = "zichenliu@ucla.edu", role = "aut"),
-    person(given = "Kristen M.", family = "McGreevy", role = "aut"))
+    person(given = "Kristen M.", family = "McGreevy", role = "ctb"))
 Maintainer: Catherine M. Crespi <ccrespi@ucla.edu>
-Description: Functions for performing power and sample size calculations 
-    for a variety of different study designs and outcomes. A companion to the 
-    book 'Power and Sample Size in R' (2025) by Catherine M. Crespi, CRC Press/Chapman & Hall.
+Description: Power and sample size calculations for a variety of study designs and 
+    outcomes. Methods include t tests, ANOVA (including tests for interactions, 
+    simple effects and contrasts), proportions, categorical data (chi-square tests 
+    and proportional odds), linear, logistic and Poisson regression, alternative 
+    and coprimary endpoints, power for confidence intervals, correlation 
+    coefficient tests, cluster randomized trials, individually randomized group 
+    treatment trials, multisite trials, treatment-by-covariate interaction effects 
+    and nonparametric tests of location.
+    Utilities are provided for computing various effect sizes.
 URL: https://github.com/powerandsamplesize/powertools
 BugReports: https://github.com/powerandsamplesize/powertools/issues
 License: MIT + file LICENSE

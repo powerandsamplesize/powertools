@@ -18,7 +18,19 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `powertools` is to provide functions for performing power and sample size calculations for a variety of different study designs and outcomes. This package accompanies the book "Power and Sample Size in R" (2025) by Catherine M. Crespi, CRC Press/Chapman & Hall. This package loads all R packages that are used in the textbook and provides new functions for sample size and power calculations that did not previously exist.
+Power and sample size calculations for a variety of study designs and 
+outcomes. Methods include t tests, ANOVA (including tests for interactions, 
+simple effects and contrasts), proportions, categorical data (chi-square tests 
+and proportional odds), linear, logistic and Poisson regression, alternative 
+and coprimary endpoints, power for confidence intervals, correlation 
+coefficient tests, cluster randomized trials, individually randomized group 
+treatment trials, multisite trials, treatment-by-covariate interaction effects 
+and nonparametric tests of location.
+Utilities are provided for computing various effect sizes. 
+
+This package is a companion to the book, Crespi (2025) Power and Sample Size
+in R, Chapman and Hall/CRC. That book uses this package as well as many 
+other R packages. 
 
 ## Installation
 
