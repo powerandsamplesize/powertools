@@ -15,14 +15,17 @@
 #'
 #' @param pc The probability of the outcome in control clusters.
 #' @param pt The probability of the outcome in treatment clusters.
+#' @param print Whether or not to print the results in a table; defaults to TRUE. To retrieve the results even when print = FALSE, assign the function output to an object.
 #'
 #' @return A list of the arguments and a dataframe of outputs.
 #' @import knitr
 #' @export
 #'
 #' @examples crt.varexplore(pc = 0.25, pt = 0.15)
+#' output <- crt.varexplore(pc = 0.25, pt = 0.15, print = FALSE)
+#' output$pc
 
-crt.varexplore <- function(pc, pt){
+crt.varexplore <- function(pc, pt, print = TRUE){
   logoddsc <- log(pc / (1 - pc))
   logoddst <- log(pt / (1 - pt))
   gam0 <- (logoddsc + logoddst) / 2
@@ -41,8 +44,12 @@ crt.varexplore <- function(pc, pt){
 
   table <- data.frame("sigma.u" = sigma.u, "pc.lower" = pc.lo, "pc.upper" = pc.up,
                       "pt.lower" = pt.lo, "pt.upper" = pt.up)
-  out <- kable(table, caption = paste("pc:", pc, "; pt:", pt), "simple")
-  print(gsub("^Table:", "", out))
+
+  if (print) {
+    out <- kable(table, caption = paste("pc:", pc, "; pt:", pt), "simple")
+    print(gsub("^Table:", "", out))
+  }
+
   return(invisible(list(pc = pc, pt = pt, table = table)))
 }
 

@@ -4,12 +4,14 @@
 \alias{crt.varexplore}
 \title{Variance exploration for cluster randomized trials with binary outcomes}
 \usage{
-crt.varexplore(pc, pt)
+crt.varexplore(pc, pt, print = TRUE)
 }
 \arguments{
 \item{pc}{The probability of the outcome in control clusters.}
 
 \item{pt}{The probability of the outcome in treatment clusters.}
+
+\item{print}{Whether or not to print the results in a table; defaults to TRUE. To retrieve the results even when print = FALSE, assign the function output to an object.}
 }
 \value{
 A list of the arguments and a dataframe of outputs.
@@ -27,4 +29,6 @@ The use of this function is illustrated in Crespi CM (2025) Power and Sample Siz
 }
 \examples{
 crt.varexplore(pc = 0.25, pt = 0.15)
+output <- crt.varexplore(pc = 0.25, pt = 0.15, print = FALSE)
+output$pc
 }

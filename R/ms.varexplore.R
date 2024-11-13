@@ -10,20 +10,23 @@
 #'
 #' @details
 #' In a multisite trial design, participants are randomized to conditions within site.
-#'  The use of this function is illustrated in Crespi CM (2025) Power and Sample Size in R.
+#' The use of this function is illustrated in Crespi CM (2025) Power and Sample Size in R.
 #'
 #'
 #'
 #' @param pc The probability of the outcome in control clusters.
 #' @param pt The probability of the outcome in treatment clusters.
+#' @param print Whether or not to print the results in a table; defaults to TRUE. To retrieve the results even when print = FALSE, assign the function output to an object.
 #'
-#' @return A list of the arguments and a dataframe of outputs.
+#' @return A list containing the calculated OR and a dataframe of outputs.
 #' @import knitr
 #' @export
 #'
 #' @examples ms.varexplore(pc = 0.1, pt = 0.2)
+#' output <- ms.varexplore(pc = 0.1, pt = 0.2, print = FALSE)
+#' output$OR
 
-ms.varexplore <- function(pc, pt) {
+ms.varexplore <- function(pc, pt, print = TRUE) {
 
   or <- (pt / (1 - pt)) / (pc / (1 - pc))
 
@@ -38,8 +41,11 @@ ms.varexplore <- function(pc, pt) {
   or_up <- round(or_up, 2)
 
   table <- data.frame("sigma.u1" = sigma_u1, "OR.lower" = or_lo, "OR.upper" = or_up)
-  out <- kable(table, caption = paste("OR:", or), "simple")
-  print(gsub("^Table:", "", out))
-  return(invisible(list(OR = or, table = table)))
 
+  if (print) {
+    out <- kable(table, caption = paste("OR:", or), "simple")
+    print(gsub("^Table:", "", out))
+  }
+
+  return(invisible(list(OR = or, table = table)))
 }

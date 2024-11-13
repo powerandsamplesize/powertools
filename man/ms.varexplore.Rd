@@ -4,15 +4,17 @@
 \alias{ms.varexplore}
 \title{Variance exploration for a multisite trial with a binary outcome}
 \usage{
-ms.varexplore(pc, pt)
+ms.varexplore(pc, pt, print = TRUE)
 }
 \arguments{
 \item{pc}{The probability of the outcome in control clusters.}
 
 \item{pt}{The probability of the outcome in treatment clusters.}
+
+\item{print}{Whether or not to print the results in a table; defaults to TRUE. To retrieve the results even when print = FALSE, assign the function output to an object.}
 }
 \value{
-A list of the arguments and a dataframe of outputs.
+A list containing the calculated OR and a dataframe of outputs.
 }
 \description{
 This function can be used to help select a plausible value for the variance/SD of the
@@ -28,4 +30,6 @@ The use of this function is illustrated in Crespi CM (2025) Power and Sample Siz
 }
 \examples{
 ms.varexplore(pc = 0.1, pt = 0.2)
+output <- ms.varexplore(pc = 0.1, pt = 0.2, print = FALSE)
+output$OR
 }
