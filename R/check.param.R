@@ -160,7 +160,7 @@ check.param <- function(param = NULL,
       else if (type == "sum") {
         if (any(param <= 0) | any(param >= 1))
           stop(paste("all values of", name, "should be between 0 and 1"))
-        if (sum(param) != 1)
+        if (!isTRUE(all.equal(sum(param), 1)))
           stop(paste("values of", name, "should sum to one"))
       }
     }
