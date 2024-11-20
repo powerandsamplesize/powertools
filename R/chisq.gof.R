@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' chisq.gof(p0vec = c(0.5, 0.3, 0.2), p1vec = c(0.7, 0.2, 0.1), N = 50)
+#' chisq.gof(p0vec = c(0.5, 0.3, 0.2), p1vec = c(0.7, 0.15, 0.15), N = 50)
 
 chisq.gof <- function (p0vec = NULL, p1vec = NULL,
                        N = NULL, alpha = 0.05, power = NULL,

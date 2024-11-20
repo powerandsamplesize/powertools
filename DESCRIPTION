@@ -1,7 +1,7 @@
 Package: powertools
 Type: Package
 Title: Power and Sample Size Tools
-Version: 0.1.0
+Version: 0.1.2
 Authors@R: c(
     person(given = "Catherine M.", family = "Crespi", email = "ccrespi@ucla.edu", role = c("aut", "cre")),
     person(given = "Zichen", family = "Liu", email = "zichenliu@ucla.edu", role = "aut"),
