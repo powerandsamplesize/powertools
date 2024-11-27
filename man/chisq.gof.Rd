@@ -36,5 +36,5 @@ discrete distribution.
 This function can solve for power, total sample size or alpha.
 }
 \examples{
-chisq.gof(p0vec = c(0.5, 0.3, 0.2), p1vec = c(0.7, 0.2, 0.1), N = 50)
+chisq.gof(p0vec = c(0.5, 0.3, 0.2), p1vec = c(0.7, 0.15, 0.15), N = 50)
 }

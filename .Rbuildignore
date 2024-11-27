@@ -2,3 +2,4 @@
 ^.*\.MD$
 ^.*\.Rmd$
 ^\.Rproj\.user$
+^\.github$
