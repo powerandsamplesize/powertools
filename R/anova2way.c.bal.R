@@ -83,7 +83,6 @@ anova2way.c.bal <- function (n = NULL, mmatrix = NULL, cvec = NULL,
     if (!v) return(power)
   }
   else if (is.null(n)) {
-    denom <- ifelse(intx, a * b, a + b)
     n <- stats::uniroot(function(n) eval(p.body) - power, c(2 + ncov/(a * b), 1e+05))$root
     if (!v) return(n)
   }
