@@ -98,10 +98,10 @@ anova2way.F.bal <- function (n = NULL, mmatrix = NULL, sd = 1,
     if (!v) return(c(powerA = powerA, powerB = powerB, powerAB = powerAB))
   }
   else if (is.null(n)){
-    nA <- round(stats::uniroot(function(n) eval(p.body.A) - power, c(2, 1e+05))$root, 4)
-    nB <- round(stats::uniroot(function(n) eval(p.body.B) - power, c(2, 1e+05))$root, 4)
+    nA <- round(stats::uniroot(function(n) eval(p.body.A) - power, c(2 + ncov/(a * b), 1e+05))$root, 4)
+    nB <- round(stats::uniroot(function(n) eval(p.body.B) - power, c(2 + ncov/(a * b), 1e+05))$root, 4)
     if (intx)
-      nAB <- round(stats::uniroot(function(n) eval(p.body.AB) - power, c(2, 1e+05))$root, 4)
+      nAB <- round(stats::uniroot(function(n) eval(p.body.AB) - power, c(2 + ncov/(a * b), 1e+05))$root, 4)
     if (!v) return(c(nA = nA, nB = nB, nAB = nAB))
   }
   else if (is.null(alpha)) {

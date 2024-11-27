@@ -63,7 +63,7 @@ anova1way.c.bal <- function (n = NULL, mvec = NULL, cvec = NULL, sd = 1,
     if (!v) return(power)
   }
   else if (is.null(n)) {
-    n <- stats::uniroot(function(n) eval(p.body) - power, c(2, 1e+05))$root
+    n <- stats::uniroot(function(n) eval(p.body) - power, c(2 + ncov/a, 1e+05))$root
     if (!v) return(n)
   }
   else if (is.null(alpha)) {

@@ -29,8 +29,8 @@
 #' sd = 2, alpha = 0.05)
 
 anova2way.c.bal <- function (n = NULL, mmatrix = NULL, cvec = NULL,
-                                factor = c("a", "b"), sd = 1, Rsq = 0, ncov = 0,
-                                alpha = 0.05, power = NULL, v = FALSE) {
+                             factor = c("a", "b"), sd = 1, Rsq = 0, ncov = 0,
+                             alpha = 0.05, power = NULL, v = FALSE) {
 
   # Check if the arguments are specified correctly
   check.many(list(n, alpha, power), "oneof")
@@ -83,7 +83,8 @@ anova2way.c.bal <- function (n = NULL, mmatrix = NULL, cvec = NULL,
     if (!v) return(power)
   }
   else if (is.null(n)) {
-    n <- stats::uniroot(function(n) eval(p.body) - power, c(2, 1e+05))$root
+    denom <- ifelse(intx, a * b, a + b)
+    n <- stats::uniroot(function(n) eval(p.body) - power, c(2 + ncov/(a * b), 1e+05))$root
     if (!v) return(n)
   }
   else if (is.null(alpha)) {
