@@ -12,7 +12,7 @@
 #'
 #' @param N The sample size.
 #' @param p The number of control predictors.
-#' @param q The number of test predictors.
+#' @param q The number of test predictors. Must be 1 when only pc is specified.
 #' @param Rsq.red The squared population multiple correlation coefficient for the reduced model. Either both Rsq terms OR pc must be specified.
 #' @param Rsq.full The squared population multiple correlation coefficient for the full model. Either both Rsq terms OR pc must be specified.
 #' @param pc The partial correlation coefficient. Either both Rsq terms OR pc must be specified.
@@ -25,7 +25,7 @@
 #'
 #' @examples
 #' mlrF.partial(N = 80, p = 3, q = 2, Rsq.red = 0.25, Rsq.full = 0.35)
-#' mlrF.partial(N = 150, p = 4, pc = 0.2)
+#' mlrF.partial(N = 150, p = 4, q = 1, pc = 0.2)
 
 mlrF.partial <- function (N = NULL, p = NULL, q = NULL, pc = NULL,
                           Rsq.red = NULL, Rsq.full = NULL,
@@ -36,6 +36,8 @@ mlrF.partial <- function (N = NULL, p = NULL, q = NULL, pc = NULL,
     stop("please specify the number of predictors")
   if ((is.null(Rsq.red) | is.null(Rsq.full)) & is.null(pc))
     stop("please specify Rsq.red and Rsq.full OR pc")
+  if (!is.null(pc) & (q != 1))
+    stop("q must be 1 if pc is specified")
 
   check.many(list(N, alpha, power), "oneof")
   check.param(N, "pos"); check.param(N, "min", min = 7)
