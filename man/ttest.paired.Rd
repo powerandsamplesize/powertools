@@ -8,7 +8,7 @@ ttest.paired(
   N = NULL,
   delta = NULL,
   sd1 = 1,
-  sd2 = 1,
+  sd2 = NULL,
   rho = NULL,
   alpha = 0.05,
   power = NULL,
@@ -23,7 +23,7 @@ ttest.paired(
 
 \item{sd1}{The pre standard deviation; defaults to 1.}
 
-\item{sd2}{The post standard deviation; defaults to 1.}
+\item{sd2}{The post standard deviation; defaults to the value of sd1.}
 
 \item{rho}{The correlation between pre and post measurements on the same individual.}
 
