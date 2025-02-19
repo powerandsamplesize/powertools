@@ -10,7 +10,7 @@
 #' @param N The sample size; the number of pairs.
 #' @param delta DeltaA (the true mean difference) - Delta0 (the mean difference under the null).
 #' @param sd1 The pre standard deviation; defaults to 1.
-#' @param sd2 The post standard deviation; defaults to 1.
+#' @param sd2 The post standard deviation; defaults to the value of sd1.
 #' @param rho The correlation between pre and post measurements on the same individual; defaults to 0.
 #' @param alpha The significance level (type 1 error rate); defaults to 0.05.
 #' @param power The specified level of power.
@@ -24,7 +24,7 @@
 #' ztest.paired(N = NULL, delta = 4, sd1 = 10, sd2 = 10, rho = 0.4, power = 0.8, sides = 2)
 
 ztest.paired <- function (N = NULL, delta = NULL,
-                          sd1 = 1, sd2 = 1, rho = NULL,
+                          sd1 = 1, sd2 = NULL, rho = NULL,
                           alpha = 0.05, power = NULL, sides = 2,
                           v = FALSE) {
 
@@ -32,13 +32,15 @@ ztest.paired <- function (N = NULL, delta = NULL,
   check.many(list(N, delta, alpha, power), "oneof")
   check.param(N, "pos")
   check.param(sd1, "req"); check.param(sd1, "pos")
-  check.param(sd2, "req"); check.param(sd2, "pos")
   check.param(rho, "req"); check.param(rho, "uniti")
   check.param(delta, "num")
   check.param(alpha, "unit")
   check.param(power, "unit")
   check.param(sides, "req"); check.param(sides, "vals", valslist = c(1, 2))
   check.param(v, "req"); check.param(v, "bool")
+
+  # If sd2 is missing, default to sd1
+  if (is.null(sd2)) sd2 <- sd1
 
   # Calculate the standard deviation of differences within pairs
   sigmad <- sqrt(sd1^2 + sd2^2 - 2 * rho * sd1 * sd2)
@@ -56,9 +58,6 @@ ztest.paired <- function (N = NULL, delta = NULL,
       stats::pnorm(stats::qnorm(alpha / 2) + sqrt(N) * d) +
         stats::pnorm(stats::qnorm(alpha / 2) - sqrt(N) * d)
     })
-
-  NOTE <- "N is the number of pairs"
-  if (!v) print(paste("NOTE:", NOTE))
 
   # Use stats::uniroot function to calculate missing argument
   if (is.null(power)) {
@@ -81,6 +80,7 @@ ztest.paired <- function (N = NULL, delta = NULL,
 
   # Generate output text
   METHOD <- "Paired z test power calculation"
+  NOTE <- "N is the number of pairs"
   sd <- c(sd1, sd2)
 
   # Print output as a power.htest object
