@@ -14,9 +14,9 @@
 #' @export
 #'
 #' @examples
-#' es.fsq(Rsq = 0.02)
+#' es.fsq.overall(Rsq = 0.02)
 
-es.fsq <- function (Rsq = 0.02) {
+es.fsq.overall <- function (Rsq = 0.02) {
 
   # Check if the arguments are specified correctly
   check.param(Rsq, "req"); check.param(Rsq, "uniti")
