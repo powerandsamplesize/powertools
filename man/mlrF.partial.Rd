@@ -21,7 +21,7 @@ mlrF.partial(
 
 \item{p}{The number of control predictors.}
 
-\item{q}{The number of test predictors.}
+\item{q}{The number of test predictors. Must be 1 when only pc is specified.}
 
 \item{pc}{The partial correlation coefficient. Either both Rsq terms OR pc must be specified.}
 
@@ -47,5 +47,5 @@ Can solve for power, N or alpha.
 }
 \examples{
 mlrF.partial(N = 80, p = 3, q = 2, Rsq.red = 0.25, Rsq.full = 0.35)
-mlrF.partial(N = 150, p = 4, pc = 0.2)
+mlrF.partial(N = 150, p = 4, q = 1, pc = 0.2)
 }
