@@ -67,6 +67,7 @@ es.anova.f <- function (means = NULL, sd = NULL, v = TRUE) {
     structure(list(fA = fA, method = METHOD), class = "power.htest")
 
   } else if (is.matrix(means)) {
+    if (!v) return(c(fA = fA, fB = fB, fAB = fAB))
     METHOD <- "Cohen's f effect size calculation for\n     two-way analysis of variance"
     mrows <- c()
     for (i in 1:a) mrows <- c(mrows, paste(means[i,], collapse = ', '))
