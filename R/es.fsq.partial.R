@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Computes the f-squared (r^2) effect size for a partial F test in a multiple linear regression model
-#' based on the model R^2 (Rsq). Based on Cohen (1988). EDIT THIS
+#' based on the model R^2 (Rsq). Based on Cohen (1988). (EDIT THIS)
 #'
 #' @details
 #' Cohen J (1988) Statistical Power Analysis for the Behavioral Sciences, 2nd edition.
@@ -27,6 +27,11 @@ es.fsq.partial <- function (Rsq.red = NULL, Rsq.full = NULL, Rsq.diff = NULL, pc
   # Check if the arguments are specified correctly
   if ((sum(sapply(list(Rsq.red, Rsq.full, Rsq.diff), is.null)) > 1) & is.null(pc))
     stop("please specify 2 out of 3 Rsq parameters OR pc")
+
+  check.param(Rsq.red, "unit")
+  check.param(Rsq.full, "unit")
+  check.param(Rsq.diff, "unit")
+  check.param(pc, "uniti")
 
   if(is.null(pc)) {
     # Calculate the missing Rsq term
