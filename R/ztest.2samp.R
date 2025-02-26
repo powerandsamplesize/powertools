@@ -61,33 +61,33 @@ ztest.2samp <- function (n1 = NULL, n.ratio = 1, delta = NULL,
                    delta / sqrt((sd1 * sd.ratio)^2 / (n1 * n.ratio) + sd1^2 / n1))
     })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(n1)) {
-    n1 <- stats::uniroot(function(n1) eval(p.body) - power, c(2, 1e+07))$root
+    n1 <- safe.uniroot(function(n1) eval(p.body) - power, c(2, 1e+07))$root
     if (!v) return(n1)
   }
   else if (is.null(n.ratio)) {
-    n.ratio <- stats::uniroot(function(n.ratio) eval(p.body) - power,c(2/n1, 1e+07))$root
+    n.ratio <- safe.uniroot(function(n.ratio) eval(p.body) - power,c(2/n1, 1e+07))$root
     if (!v) return(n.ratio)
   }
   else if (is.null(sd1)) {
-    sd1 <- stats::uniroot(function(sd1) eval(p.body) - power, delta * c(1e-07, 1e+07))$root
+    sd1 <- safe.uniroot(function(sd1) eval(p.body) - power, delta * c(1e-07, 1e+07))$root
     if (!v) return(sd1)
   }
   else if (is.null(sd.ratio)) {
-    sd.ratio <- stats::uniroot(function(sd.ratio) eval(p.body) - power, c(1e-07, 1e+07))$root
+    sd.ratio <- safe.uniroot(function(sd.ratio) eval(p.body) - power, c(1e-07, 1e+07))$root
     if (!v) return(sd.ratio)
   }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body) - power,  c(1e-07, 1e+07))$root
+    delta <- safe.uniroot(function(delta) eval(p.body) - power,  c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")

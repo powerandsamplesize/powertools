@@ -85,7 +85,7 @@ crt.xo.cont <- function (m = NULL, J.arm = NULL, delta = NULL, sd = 1,
 
   # Use uniroot to calculate missing argument
   if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else if (is.null(power)) {
@@ -93,15 +93,15 @@ crt.xo.cont <- function (m = NULL, J.arm = NULL, delta = NULL, sd = 1,
     if (!v) return(power)
   }
   else if (is.null(J.arm)) {
-    J.arm <- stats::uniroot(function(J.arm) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
+    J.arm <- safe.uniroot(function(J.arm) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
     if (!v) return(J.arm)
   }
   else if (is.null(m)) {
-    m <- stats::uniroot(function(m) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
+    m <- safe.uniroot(function(m) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
     if (!v) return(m)
   }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body) - power, c(1e-07, 1e+07))$root
+    delta <- safe.uniroot(function(delta) eval(p.body) - power, c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
 

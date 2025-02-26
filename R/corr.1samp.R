@@ -53,17 +53,17 @@ corr.1samp <- function (N = NULL, rho0 = 0, rhoA = NULL,
     stats::pnorm((abs(omega) - za) / sqrt(nu))
   })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(N)) {
-    N <- stats::uniroot(function(N) eval(p.body) - power, c(4 + 1e-10, 1e+09))$root
+    N <- safe.uniroot(function(N) eval(p.body) - power, c(4 + 1e-10, 1e+09))$root
     if (!v) return(N)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")

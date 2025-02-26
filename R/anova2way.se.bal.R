@@ -77,17 +77,17 @@ anova2way.se.bal <- function (n = NULL, mmatrix = NULL, cmatrix = NULL,
       stats::pf(q = stats::qf(alpha, 1, df2), 1, df2, lambda^2)
     })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(n)) {
-    n <- stats::uniroot(function(n) eval(p.body) - power, c(2 + ncov/(a * b), 1e+05))$root
+    n <- safe.uniroot(function(n) eval(p.body) - power, c(2 + ncov/(a * b), 1e+05))$root
     if (!v) return(n)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error", domain = NA)

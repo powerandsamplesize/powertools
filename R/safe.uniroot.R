@@ -9,12 +9,12 @@
 #'
 #' @examples
 #' f <- function(x) x - 3
-#' safe.uniroot(f, c(-10, 10))
+#' safe.uniroot(f, c(-10, 10))$root
 
 safe.uniroot <- function(f = NULL, interval = NULL) {
   tryCatch(
     {
-      stats::uniroot(f, interval)$root
+      stats::uniroot(f, interval)
     },
     error = function(e) {
       stop(simpleError(paste0(e$message, ".

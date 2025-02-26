@@ -71,7 +71,7 @@ crt.parallel.hte <- function (m = NULL, J1 = NULL, J.ratio = 1, beta = NULL,
 
   # Use uniroot to calculate missing argument
   if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else if (is.null(power)) {
@@ -79,19 +79,19 @@ crt.parallel.hte <- function (m = NULL, J1 = NULL, J.ratio = 1, beta = NULL,
     if (!v) return(power)
   }
   else if (is.null(J1)) {
-    J1 <- stats::uniroot(function(J1) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
+    J1 <- safe.uniroot(function(J1) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
     if (!v) return(J1)
   }
   else if (is.null(J.ratio)) {
-    J.ratio <- stats::uniroot(function(J.ratio) eval(p.body) - power, c(1e-10, 1e+07))$root
+    J.ratio <- safe.uniroot(function(J.ratio) eval(p.body) - power, c(1e-10, 1e+07))$root
     if (!v) return(J.ratio)
   }
   else if (is.null(m)) {
-    m <- stats::uniroot(function(m) eval(p.body) - power, c(2, 1e+07))$root
+    m <- safe.uniroot(function(m) eval(p.body) - power, c(2, 1e+07))$root
     if (!v) return(m)
   }
   else if (is.null(beta)) {
-    beta <- stats::uniroot(function(beta) eval(p.body) - power, c(1e-07, 1e+07))$root
+    beta <- safe.uniroot(function(beta) eval(p.body) - power, c(1e-07, 1e+07))$root
     if (!v) return(beta)
   }
 

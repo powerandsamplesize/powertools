@@ -54,22 +54,22 @@ signtest <- function (N = NULL, p = NULL, alpha = 0.05, power = NULL,
     stats::pnorm(stats::qnorm(alpha / sides) + 2 * sqrt(N) * abs(p - 0.5))
   })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(N)) {
-    N <- stats::uniroot(function(N) eval(p.body) - power, c(2, 1e+07))$root
+    N <- safe.uniroot(function(N) eval(p.body) - power, c(2, 1e+07))$root
     if (!v) return(N)
   }
   else if (is.null(p)) {
-    p <- stats::uniroot(function(p) eval(p.body) - power, c(0.5, 1 - 1e-10))$root
+    p <- safe.uniroot(function(p) eval(p.body) - power, c(0.5, 1 - 1e-10))$root
     p <- c(p, 1 - p)
     if (!v) return(p)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")

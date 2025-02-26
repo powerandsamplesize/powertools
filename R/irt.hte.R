@@ -53,25 +53,25 @@ irt.hte <- function (n1 = NULL, n.ratio = 1, beta = NULL,
     stats::pnorm(stats::qnorm(alpha / sides) + A)
   })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(n1)) {
-    n1 <- stats::uniroot(function(n1) eval(p.body) - power, c(2, 1e+07))$root
+    n1 <- safe.uniroot(function(n1) eval(p.body) - power, c(2, 1e+07))$root
     if (!v) return(n1)
   }
   else if (is.null(n.ratio)) {
-    n.ratio <- stats::uniroot(function(n.ratio) eval(p.body) - power,c(2/n1, 1e+07))$root
+    n.ratio <- safe.uniroot(function(n.ratio) eval(p.body) - power,c(2/n1, 1e+07))$root
     if (!v) return(n.ratio)
   }
   else if (is.null(beta)) {
-    beta <- stats::uniroot(function(beta) eval(p.body) - power,  c(1e-07, 1e+07))$root
+    beta <- safe.uniroot(function(beta) eval(p.body) - power,  c(1e-07, 1e+07))$root
     if (!v) return(beta)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")

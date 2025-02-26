@@ -49,25 +49,25 @@ ztest.1samp <- function (N = NULL, delta = NULL, sd = 1,
       stats::pnorm(stats::qnorm(alpha / 2) - sqrt(N) * d)
     })
 
-  # Use stats::uniroot function to calculate missing argument
+  # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
     if (!v) return(power)
   }
   else if (is.null(N)) {
-    N <- stats::uniroot(function(N) eval(p.body) - power, c(2, 1e+07))$root
+    N <- safe.uniroot(function(N) eval(p.body) - power, c(2, 1e+07))$root
     if (!v) return(N)
   }
   else if (is.null(sd)) {
-    sd <- stats::uniroot(function(sd) eval(p.body) - power, delta * c(1e-07, 1e+07))$root
+    sd <- safe.uniroot(function(sd) eval(p.body) - power, delta * c(1e-07, 1e+07))$root
     if (!v) return(sd)
   }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body) - power,  c(1e-07, 1e+07))$root
+    delta <- safe.uniroot(function(delta) eval(p.body) - power,  c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
   else if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")

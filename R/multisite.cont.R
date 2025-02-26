@@ -88,7 +88,7 @@ multisite.cont <- function (m = NULL, m.sd = 0, alloc.ratio = 1, J = NULL,
 
   # Use uniroot to calculate missing argument
   if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else if (is.null(power)) {
@@ -96,20 +96,20 @@ multisite.cont <- function (m = NULL, m.sd = 0, alloc.ratio = 1, J = NULL,
     if (!v) return(power)
   }
   else if (is.null(J)) {
-    J <- stats::uniroot(function(J) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
+    J <- safe.uniroot(function(J) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
     if (!v) return(J)
   }
   else if (is.null(m)) {
-    m <- stats::uniroot(function(m) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
+    m <- safe.uniroot(function(m) eval(p.body) - power, c(2 + 1e-10, 1e+07))$root
     if (!v) return(m)
   }
   # else if (is.null(alloc.ratio)) {
-  #   alloc.ratio <- stats::uniroot(function(alloc.ratio) eval(p.body) - power + 1e-5, c(1 + 1e-10, 1e+07))$root
+  #   alloc.ratio <- safe.uniroot(function(alloc.ratio) eval(p.body) - power + 1e-5, c(1 + 1e-10, 1e+07))$root
   #   alloc.ratio <- c(alloc.ratio, 1 / alloc.ratio)
   #   if (!v) return(alloc.ratio)
   # }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body) - power, c(1e-07, 1e+07))$root
+    delta <- safe.uniroot(function(delta) eval(p.body) - power, c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
   else stop("internal error")

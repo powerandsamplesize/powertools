@@ -94,7 +94,7 @@ irgtt.cont <- function (m = NULL, J = NULL, n = NULL, delta = NULL, sd = 1,
 
   # Use uniroot to calculate missing argument
   if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body2) - power, interval = c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body2) - power, interval = c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else if (is.null(power)) {
@@ -102,19 +102,19 @@ irgtt.cont <- function (m = NULL, J = NULL, n = NULL, delta = NULL, sd = 1,
     if (!v) return(power)
   }
   else if (is.null(J)) {
-    J <- stats::uniroot(function(J) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
+    J <- safe.uniroot(function(J) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(J)
   }
   else if (is.null(m)) {
-    m <- stats::uniroot(function(m) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
+    m <- safe.uniroot(function(m) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(m)
   }
   else if (is.null(n)) {
-    n <- stats::uniroot(function(n) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
+    n <- safe.uniroot(function(n) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(n)
   }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body2) - power, interval = c(1e-07, 1e+07))$root
+    delta <- safe.uniroot(function(delta) eval(p.body2) - power, interval = c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
 
