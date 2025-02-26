@@ -20,7 +20,7 @@ The computed RE.
 \description{
 For a continuous outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized
 or multisite trial with varying cluster sizes to that of a trial with constant cluster sizes,
-assuming equal total number of subjects.
+assuming equal total number of subjects. This approximation may not be valid when m.sd / m > 2.
 }
 \examples{
 re.clustsize.cont(m = 25, m.sd = 15, icc = 0.05)
