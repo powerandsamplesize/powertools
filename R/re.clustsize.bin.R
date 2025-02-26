@@ -1,9 +1,9 @@
-#' Relative efficiency of a cluster randomized trial with binary outcome
+#' Relative efficiency of a cluster randomized or multisite trial with binary outcome
 #' with varying cluster sizes
 #'
 #' @description
-#' For a binary outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized trial
-#' with varying cluster sizes to that of a cluster randomized trial with constant cluster sizes,
+#' For a binary outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized
+#' or multisite trial with varying cluster sizes to that of a trial with constant cluster sizes,
 #' assuming equal total number of subjects.
 #'
 #' @details
