@@ -60,9 +60,6 @@ prop.paired <- function (N = NULL, p1 = NULL, p2 = NULL, phi = NULL,
                   stats::qnorm(alpha / sides, lower.tail = FALSE) *
                   sqrt(dpr + 1)) / sqrt((dpr + 1) - paid * (dpr - 1)^2)))
 
-  NOTE <- "N is the number of pairs"
-  if (!v) print(paste("NOTE:", NOTE))
-
   # Use safe.uniroot function to calculate missing argument
   if (is.null(power)) {
     power <- eval(p.body)
@@ -80,6 +77,7 @@ prop.paired <- function (N = NULL, p1 = NULL, p2 = NULL, phi = NULL,
 
   # Generate output text
   METHOD <-"McNemar paired comparison of proportions\n     approximate power calculation"
+  NOTE <- "N is the number of pairs"
 
   # Print output as a power.htest object depending on which inputs were given
   if (!is.null(p1) & !is.null(p2) & !is.null(phi)) {
