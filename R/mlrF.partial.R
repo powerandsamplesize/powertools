@@ -73,7 +73,7 @@ mlrF.partial <- function (N = NULL, p = NULL, q = NULL, pc = NULL,
     if (!v) return(power)
   }
   else if (is.null(N)) {
-    N <- safe.uniroot(function(n) eval(p.body) - power, c(7, 1e+09))$root
+    N <- safe.uniroot(function(N) eval(p.body) - power, c(p + q + 2, 1e+09))$root
     if (!v) return(N)
   }
   else if (is.null(alpha)) {
