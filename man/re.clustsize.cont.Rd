@@ -2,7 +2,7 @@
 % Please edit documentation in R/re.clustsize.cont.R
 \name{re.clustsize.cont}
 \alias{re.clustsize.cont}
-\title{Relative efficiency of a cluster randomized trial with continuous outcome
+\title{Relative efficiency of a cluster randomized or multisite trial with continuous outcome
 with varying cluster sizes}
 \usage{
 re.clustsize.cont(m, m.sd, icc)
@@ -18,8 +18,8 @@ re.clustsize.cont(m, m.sd, icc)
 The computed RE.
 }
 \description{
-For a continuous outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized trial
-with varying cluster sizes to that of a cluster randomized trial with constant cluster sizes,
+For a continuous outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized
+or multisite trial with varying cluster sizes to that of a trial with constant cluster sizes,
 assuming equal total number of subjects.
 }
 \examples{

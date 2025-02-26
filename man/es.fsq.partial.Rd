@@ -19,8 +19,8 @@ es.fsq.partial(Rsq.red = NULL, Rsq.full = NULL, Rsq.diff = NULL, pc = NULL)
 A list of the arguments and the f^2 effect size.
 }
 \description{
-Computes the f-squared (r^2) effect size for a partial F test in a multiple linear regression model
-based on the model R^2 (Rsq). Based on Cohen (1988). EDIT THIS
+Computes the f-squared (f^2) effect size for a partial F test in a multiple linear regression model
+using either model R^2 (Rsq) values or a partial correlation. Based on Cohen (1988). (EDIT THIS)
 }
 \details{
 Cohen J (1988) Statistical Power Analysis for the Behavioral Sciences, 2nd edition.

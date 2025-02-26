@@ -13,7 +13,7 @@ es.fsq.overall(Rsq = 0.02)
 A list of the arguments and the f^2 effect size.
 }
 \description{
-Computes the f-squared (r^2) effect size for an overall F test in a multiple linear regression model
+Computes the f-squared (f^2) effect size for an overall F test in a multiple linear regression model
 based on the model R^2 (Rsq). Based on Cohen (1988).
 }
 \details{
