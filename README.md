@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/powerandsamplesize/powertools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/powerandsamplesize/powertools/actions/workflows/R-CMD-check.yaml)
+
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/powertools)
 <!-- badges: end -->
 
 Power and sample size calculations for a variety of study designs and
