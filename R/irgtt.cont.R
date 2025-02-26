@@ -21,7 +21,6 @@
 #' @param alpha The significance level (type 1 error rate); defaults to 0.05.
 #' @param power The specified level of power.
 #' @param sides Either 1 or 2 (default) to specify a one- or two-sided hypothesis test.
-#' @param tol The desired accuracy (convergence tolerance) for uniroot.
 #' @param v Either TRUE for verbose output or FALSE (default) to output computed argument only.
 #'
 #' @return A list of the arguments (including the computed one).
@@ -33,7 +32,7 @@
 
 irgtt.cont <- function (m = NULL, J = NULL, n = NULL, delta = NULL, sd = 1,
                         icc = 0, Theta = 1, alpha = 0.05, power = NULL, sides = 2,
-                        tol = .Machine$double.eps^0.25, v = FALSE) {
+                        v = FALSE) {
 
   # Check if the arguments are specified correctly
   check.many(list(m, J, n, delta, alpha, power), "oneof")
@@ -95,7 +94,7 @@ irgtt.cont <- function (m = NULL, J = NULL, n = NULL, delta = NULL, sd = 1,
 
   # Use uniroot to calculate missing argument
   if (is.null(alpha)) {
-    alpha <- stats::uniroot(function(alpha) eval(p.body2) - power, interval = c(1e-10, 1 - 1e-10), tol = tol)$root
+    alpha <- stats::uniroot(function(alpha) eval(p.body2) - power, interval = c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else if (is.null(power)) {
@@ -103,19 +102,19 @@ irgtt.cont <- function (m = NULL, J = NULL, n = NULL, delta = NULL, sd = 1,
     if (!v) return(power)
   }
   else if (is.null(J)) {
-    J <- stats::uniroot(function(J) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07), tol = tol)$root
+    J <- stats::uniroot(function(J) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(J)
   }
   else if (is.null(m)) {
-    m <- stats::uniroot(function(m) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07), tol = tol)$root
+    m <- stats::uniroot(function(m) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(m)
   }
   else if (is.null(n)) {
-    n <- stats::uniroot(function(n) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07), tol = tol)$root
+    n <- stats::uniroot(function(n) eval(p.body2) - power, interval = c(2 + 1e-10, 1e+07))$root
     if (!v) return(n)
   }
   else if (is.null(delta)) {
-    delta <- stats::uniroot(function(delta) eval(p.body2) - power, interval = c(1e-07, 1e+07), tol = tol)$root
+    delta <- stats::uniroot(function(delta) eval(p.body2) - power, interval = c(1e-07, 1e+07))$root
     if (!v) return(delta)
   }
 
