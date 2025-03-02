@@ -3,8 +3,9 @@
 #'
 #' @description
 #' For a binary outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized
-#' or multisite trial with varying cluster sizes to that of a trial with constant cluster sizes,
-#' assuming equal total number of subjects.
+#' or multisite trial with varying cluster (site) sizes to that of a trial with constant cluster sizes,
+#' assuming equal total number of subjects. This approximation may not be valid for all combinations of
+#' parameters, for example when m.sd is large.
 #'
 #' @details
 #' Candel MJJM and van Breukelen GJP (2010) Sample size adjustments for varying cluster sizes in
@@ -50,6 +51,11 @@ re.clustsize.bin <- function(m, m.sd, pc, pt, sigma.u){
   re.num <- (1 - cv^2 * lamt * (1 - lamt)) * (1 - cv^2 * lamc * (1 - lamc)) * (lamt + lamc)
   re.denom <- lamt + lamc - cv^2 * (lamt^2 * (1 - lamt) + lamc^2 * (1 - lamt))
   re <- re.num / re.denom
+
+  NOTE <- "Relative efficiency values cannot be negative.
+  The approximation appears to be invalid for this combination
+  of parameters, e.g. when m.sd is large."
+  if (re < 0) print(paste("NOTE:", NOTE))
 
   return(re)
 }

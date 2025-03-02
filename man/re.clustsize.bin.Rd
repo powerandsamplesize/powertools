@@ -23,8 +23,9 @@ The computed RE.
 }
 \description{
 For a binary outcome, computes the relative efficiency (ratio of the variances) of a cluster randomized
-or multisite trial with varying cluster sizes to that of a trial with constant cluster sizes,
-assuming equal total number of subjects.
+or multisite trial with varying cluster (site) sizes to that of a trial with constant cluster sizes,
+assuming equal total number of subjects. This approximation may not be valid for all combinations of
+parameters, for example when m.sd is large.
 }
 \details{
 Candel MJJM and van Breukelen GJP (2010) Sample size adjustments for varying cluster sizes in
