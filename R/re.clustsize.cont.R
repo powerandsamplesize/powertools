@@ -27,8 +27,8 @@ re.clustsize.cont <- function (m, m.sd, icc) {
   K <- (m * icc) / (1 + (m - 1) * icc)
   RE <- 1 - cv^2 * K * (1 - K)
 
-  NOTE <- "Relative efficiency values cannot be negative. The approximation appears to be invalid for this combination of parameters, e.g. when m.sd is large"
-  if (RE < 0) print(paste("NOTE:", NOTE))
+  NOTE <- "Relative efficiency values cannot be negative.\nThe approximation appears to be invalid for this combination\nof parameters, e.g. when m.sd is large"
+  if (RE < 0) cat(paste("NOTE:", NOTE, "\n"))
 
   return(RE)
 }

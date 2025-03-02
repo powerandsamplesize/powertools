@@ -52,10 +52,8 @@ re.clustsize.bin <- function(m, m.sd, pc, pt, sigma.u){
   re.denom <- lamt + lamc - cv^2 * (lamt^2 * (1 - lamt) + lamc^2 * (1 - lamt))
   re <- re.num / re.denom
 
-  NOTE <- "Relative efficiency values cannot be negative.
-  The approximation appears to be invalid for this combination
-  of parameters, e.g. when m.sd is large."
-  if (re < 0) print(paste("NOTE:", NOTE))
+  NOTE <- "Relative efficiency values cannot be negative.\nThe approximation appears to be invalid for this combination\nof parameters, e.g. when m.sd is large."
+  if (re < 0) cat(paste("NOTE:", NOTE, "\n"))
 
   return(re)
 }
