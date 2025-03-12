@@ -35,7 +35,7 @@ propodds <- function(pC, OR, n1, n.ratio = 1, alpha = 0.05,
   check.param(n.ratio, "pos")
   check.param(power, "unit")
   check.param(alpha, "unit")
-  check.param(pC, "req"); check.param(pC, "sum")
+  check.param(pC, "req")
   check.param(OR, "req"); check.param(OR, "mini", min = 1)
   check.param(v, "req"); check.param(v, "bool")
 
