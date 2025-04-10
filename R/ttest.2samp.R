@@ -60,25 +60,25 @@ ttest.2samp <- function (n1 = NULL, n.ratio = 1, delta = NULL,
   if (sides == 1)
     p.body <- quote({
       d <- abs(delta)
-      nu <- switch(df.method,
+      df <- switch(df.method,
                    welch = (sd1^2 / n1 + (sd1 * sd.ratio)^2 / (n1 * n.ratio))^2 /
-                     ((sd1^2 / n1)^2 / (n1 - 1) +
-                        ((sd1 * sd.ratio)^2 / (n.ratio * n1))^2 / (n1 * n.ratio - 1)),
+                   ((sd1^2 / n1)^2 / (n1 - 1) +
+                   ((sd1 * sd.ratio)^2 / (n.ratio * n1))^2 / (n1 * n.ratio - 1)),
                    classical = (1 + n.ratio) * n1 - 2)
-      stats::pt(stats::qt(alpha, nu, lower = FALSE), nu,
+      stats::pt(stats::qt(alpha, df, lower = FALSE), df,
                 sqrt(n1 / (1 + sd.ratio^2 / n.ratio)) * d / sd1, lower = FALSE)
     })
   else if (sides == 2)
     p.body <- quote({
       d <- abs(delta)
-      nu <- switch(df.method,
-                   welch = (sd1^2 / n1 + (sd1 * sd.ratio)^2 / (n1 * n.ratio))^2 /
-                     ((sd1^2 / n1)^2 / (n1 - 1) +
-                        ((sd1 * sd.ratio)^2 / (n.ratio * n1))^2 / (n1 * n.ratio - 1)),
-                   classical = (1 + n.ratio) * n1 - 2)
-      qu <- stats::qt(alpha / 2, nu, lower = FALSE)
+      df2 <- switch(df.method,
+                    welch = (sd1^2 / n1 + (sd1 * sd.ratio)^2 / (n1 * n.ratio))^2 /
+                    ((sd1^2 / n1)^2 / (n1 - 1) +
+                    ((sd1 * sd.ratio)^2 / (n.ratio * n1))^2 / (n1 * n.ratio - 1)),
+                    classical = (1 + n.ratio) * n1 - 2)
+      q <- stats::qf(alpha, 1, df2, lower.tail = FALSE)
       ncp <- sqrt(n1 / (1 + sd.ratio^2 / n.ratio)) * d / sd1
-      stats::pt(qu, nu, ncp, lower = FALSE) + pt(-qu, nu, ncp, lower = TRUE)
+      stats::pf(q, 1, df2, ncp^2, lower.tail = FALSE)
     })
 
   # Use safe.uniroot function to calculate missing argument
