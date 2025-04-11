@@ -65,8 +65,8 @@ ttest.2samp <- function (n1 = NULL, n.ratio = 1, delta = NULL,
                    ((sd1^2 / n1)^2 / (n1 - 1) +
                    ((sd1 * sd.ratio)^2 / (n.ratio * n1))^2 / (n1 * n.ratio - 1)),
                    classical = (1 + n.ratio) * n1 - 2)
-      stats::pt(stats::qt(alpha, df, lower = FALSE), df,
-                sqrt(n1 / (1 + sd.ratio^2 / n.ratio)) * d / sd1, lower = FALSE)
+      stats::pt(stats::qt(alpha, df, lower.tail = FALSE), df,
+                sqrt(n1 / (1 + sd.ratio^2 / n.ratio)) * d / sd1, lower.tail = FALSE)
     })
   else if (sides == 2)
     p.body <- quote({
