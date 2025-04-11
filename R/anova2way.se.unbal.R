@@ -29,10 +29,10 @@
 #' mmatrix <- matrix(c(9.3, 8.9, 8.5, 8.7, 8.3, 7.3), nrow = 2, byrow = TRUE)
 #' cmatrix <- matrix(c(-1, 0, 0, 1, 0, 0), nrow = 2, byrow = TRUE)
 #' anova2way.se.unbal(nmatrix = nmatrix, mmatrix = mmatrix, cmatrix = cmatrix,
-#' sd = 2, alpha = 0.025)
+#' sd = 2, alpha = 0.025, sides = 1)
 
 anova2way.se.unbal <- function (nmatrix = NULL, mmatrix = NULL, cmatrix = NULL,
-                                sd = 0, Rsq = 0, ncov = 0, alpha = 0.05,
+                                sd = 1, Rsq = 0, ncov = 0, alpha = 0.05,
                                 sides = 2, v = FALSE) {
 
   # Check if the arguments are specified correctly
@@ -74,9 +74,9 @@ anova2way.se.unbal <- function (nmatrix = NULL, mmatrix = NULL, cmatrix = NULL,
   df <- ifelse(intx, N - a * b - ncov, N - a - b + 1 - ncov)
 
   if (sides == 1)
-    power <- stats::pt(q = stats::qt(alpha, df), df, lambda)
+    power <- stats::pt(q = stats::qt(alpha, df, lower.tail = FALSE), df, abs(lambda), lower.tail = FALSE)
   else if (sides == 2)
-    power <- stats::pf(q = stats::qf(alpha, 1, df), 1, df, lambda^2)
+    power <- stats::pf(q = stats::qf(alpha, 1, df, lower.tail = FALSE), 1, df, lambda^2, lower.tail = FALSE)
 
   if (!v) return(power)
 

@@ -25,7 +25,7 @@
 #' @examples
 #' mmatrix <- matrix(c(9.3, 8.9, 8.5, 8.7, 8.3, 7.3), nrow = 2, byrow = TRUE)
 #' cmatrix <- matrix(c(-1, 0, 0, 1, 0, 0), nrow = 2, byrow = TRUE)
-#' anova2way.se.bal(n = 30, mmatrix = mmatrix, cmatrix = cmatrix, sd = 2, alpha = 0.025)
+#' anova2way.se.bal(n = 30, mmatrix = mmatrix, cmatrix = cmatrix, sd = 2, alpha = 0.025, sides = 1)
 
 anova2way.se.bal <- function (n = NULL, mmatrix = NULL, cmatrix = NULL,
                               sd = 1, Rsq = 0, ncov = 0,
@@ -66,7 +66,7 @@ anova2way.se.bal <- function (n = NULL, mmatrix = NULL, cmatrix = NULL,
         sqrt(1 - Rsq)
       N <- a * b * n
       df <- ifelse(intx, N - a * b - ncov, N - a - b + 1 - ncov)
-      stats::pt(q = stats::qt(alpha, df), df, lambda)
+      stats::pt(q = stats::qt(alpha, df, lower.tail = FALSE), df, abs(lambda), lower.tail = FALSE)
     })
   else if (sides == 2)
     p.body <- quote({
@@ -74,7 +74,7 @@ anova2way.se.bal <- function (n = NULL, mmatrix = NULL, cmatrix = NULL,
         sqrt(1 - Rsq)
       N <- a * b * n
       df2 <- ifelse(intx, N - a * b - ncov, N - a - b + 1 - ncov)
-      stats::pf(q = stats::qf(alpha, 1, df2), 1, df2, lambda^2)
+      stats::pf(q = stats::qf(alpha, 1, df2, lower.tail = FALSE), 1, df2, lambda^2, lower.tail = FALSE)
     })
 
   # Use safe.uniroot function to calculate missing argument
