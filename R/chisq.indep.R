@@ -26,7 +26,7 @@ chisq.indep <- function (pmatrix = NULL, N = NULL, alpha = 0.05, power = NULL,
 
   # Check if the arguments are specified correctly
   check.many(list(N, alpha, power), "oneof")
-  check.param(pmatrix, "req"); check.param(pmatrix, "mat"); check.param(pmatrix, "sum")
+  check.param(pmatrix, "req"); check.param(pmatrix, "mat"); check.param(pmatrix, "sum1")
   check.param(N, "pos"); check.param(N, "min", min = 2)
   check.param(alpha, "unit")
   check.param(power, "unit")

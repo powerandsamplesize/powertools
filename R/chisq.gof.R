@@ -26,8 +26,8 @@ chisq.gof <- function (p0vec = NULL, p1vec = NULL,
 
   # Check if the arguments are specified correctly
   check.many(list(N, alpha, power), "oneof")
-  check.param(p0vec, "req"); check.param(p0vec, "vec"); check.param(p0vec, "sum")
-  check.param(p1vec, "req"); check.param(p1vec, "vec"); check.param(p1vec, "sum")
+  check.param(p0vec, "req"); check.param(p0vec, "vec"); check.param(p0vec, "sum1")
+  check.param(p1vec, "req"); check.param(p1vec, "vec"); check.param(p1vec, "sum1")
   check.param(N, "pos"); check.param(N, "min", min = 2)
   check.param(alpha, "unit")
   check.param(power, "unit")

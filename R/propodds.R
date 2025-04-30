@@ -35,13 +35,11 @@ propodds <- function(pC, OR, n1, n.ratio = 1, alpha = 0.05,
   check.param(n.ratio, "pos")
   check.param(power, "unit")
   check.param(alpha, "unit")
-  check.param(pC, "req")
+  check.param(pC, "req"); check.param(pC, "sum1")
   check.param(OR, "req"); check.param(OR, "mini", min = 1)
   check.param(v, "req"); check.param(v, "bool")
 
   pC <- pC[!is.na(pC)]
-  if (abs(sum(pC) - 1) > 1e-05)
-    stop("probabilities in pC do not sum to 1")
   pT <- Hmisc::pomodm(p = pC, odds.ratio = 1 / OR)
   pavg <- (pC + pT) / 2
   ps <- 1 - sum(pavg^3)

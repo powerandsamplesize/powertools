@@ -29,9 +29,9 @@ es.w <- function (p0vec = NULL, p1vec = NULL, pmatrix = NULL) {
     stop("p0vec and p1vec, or pmatrix must be specified")
   if(!is.null(pmatrix) & (!is.null(p0vec) | !is.null(p1vec)))
     stop("p0vec and p1vec, or pmatrix must be specified")
-  check.param(p0vec, "sum")
-  check.param(p1vec, "sum")
-  check.param(pmatrix, "sum")
+  check.param(p0vec, "sum1")
+  check.param(p1vec, "sum1")
+  check.param(pmatrix, "sum1")
 
   # Calculate w
   if (is.null(pmatrix))

@@ -27,7 +27,8 @@ check.param <- function(param = NULL,
                            "mini",  # can't be <= minimum (specify min)
                            "vec",   # numerical vector
                            "mat",   # numerical matrix
-                           "sum"    # sum to one
+                           "sum1",  # sum to 1
+                           "sum0"  # sum to 0
                            ),
                   valslist = NULL, min = NULL) {
 
@@ -157,11 +158,17 @@ check.param <- function(param = NULL,
 
 
       # value is numerical vector/matrix that sums to one
-      else if (type == "sum") {
-        if (any(param <= 0) | any(param >= 1))
+      else if (type == "sum1") {
+        if (any(param < 0) | any(param > 1))
           stop(paste("all values of", name, "should be between 0 and 1"))
         if (!isTRUE(all.equal(sum(param), 1)))
           stop(paste("values of", name, "should sum to one"))
+      }
+
+      # value is numerical vector/matrix that sums to zero
+      else if (type == "sum0") {
+        if (!isTRUE(all.equal(sum(param), 0)))
+          stop(paste("values of", name, "should sum to zero"))
       }
     }
   }

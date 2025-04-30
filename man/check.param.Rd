@@ -7,7 +7,7 @@
 check.param(
   param = NULL,
   type = c("req", "num", "unit", "uniti", "unitii", "pos", "int", "bool", "vals", "min",
-    "mini", "vec", "mat", "sum"),
+    "mini", "vec", "mat", "sum1", "sum0"),
   valslist = NULL,
   min = NULL
 )

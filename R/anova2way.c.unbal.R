@@ -36,9 +36,7 @@ anova2way.c.unbal <- function (nmatrix = nmatrix, mmatrix = NULL, cvec = NULL,
   # Check if the arguments are specified correctly
   check.param(nmatrix, "req"); check.param(nmatrix, "mat")
   check.param(mmatrix, "req"); check.param(mmatrix, "mat")
-  check.param(cvec, "req"); check.param(cvec, "vec")
-  if (sum(cvec) != 0)
-    stop("sum of contrast coefficients must equal 0")
+  check.param(cvec, "req"); check.param(cvec, "vec"); check.param(cvec, "sum0")
   check.param(factor, "req"); check.param(factor, "vals", valslist = c("a", "b"))
   check.param(sd, "req"); check.param(sd, "pos")
   check.param(Rsq, "req"); check.param(Rsq, "uniti")
