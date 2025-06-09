@@ -1,7 +1,7 @@
 Package: powertools
 Type: Package
 Title: Power and Sample Size Tools
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: c(
     person(given = "Catherine M.", family = "Crespi", email = "ccrespi@ucla.edu", role = c("aut", "cre")),
     person(given = "Zichen", family = "Liu", email = "zichenliu@ucla.edu", role = "aut"),
@@ -16,7 +16,7 @@ Description: Power and sample size calculations for a variety of study designs a
     treatment trials, multisite trials, treatment-by-covariate interaction effects 
     and nonparametric tests of location. Utilities are provided for 
     computing various effect sizes. Companion package to the book 
-    "Power and Sample Size in R", Crespi (2025, ISBN:9781138591622). 
+    "Power and Sample Size in R", Crespi (2025, ISBN:9781138591622). Further resources available at <powerandsamplesize.org>.
 URL: https://github.com/powerandsamplesize/powertools
 BugReports: https://github.com/powerandsamplesize/powertools/issues
 License: MIT + file LICENSE
@@ -34,3 +34,4 @@ Imports:
     knitr
 Depends: 
     R (>= 2.10)
+LazyData: true
