@@ -16,7 +16,8 @@ Description: Power and sample size calculations for a variety of study designs a
     treatment trials, multisite trials, treatment-by-covariate interaction effects 
     and nonparametric tests of location. Utilities are provided for 
     computing various effect sizes. Companion package to the book 
-    "Power and Sample Size in R", Crespi (2025, ISBN:9781138591622). Further resources available at <powerandsamplesize.org>.
+    "Power and Sample Size in R", Crespi (2025, ISBN:9781138591622). 
+    Further resources available at <https://powerandsamplesize.org/>.
 URL: https://github.com/powerandsamplesize/powertools
 BugReports: https://github.com/powerandsamplesize/powertools/issues
 License: MIT + file LICENSE
