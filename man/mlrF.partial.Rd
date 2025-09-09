@@ -21,7 +21,7 @@ mlrF.partial(
 
 \item{p}{The number of control predictors.}
 
-\item{q}{The number of test predictors. Must be 1 when only pc is specified.}
+\item{q}{The number of test predictors. Set to 1 when only pc is specified.}
 
 \item{pc}{The partial correlation coefficient. Either both Rsq terms OR pc must be specified.}
 
