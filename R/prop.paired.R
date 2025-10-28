@@ -49,6 +49,12 @@ prop.paired <- function (N = NULL, p1 = NULL, p2 = NULL, phi = NULL,
 
   # Calculate paid and dpr if not given
   if (is.null(paid) & is.null(dpr)) {
+
+    # make sure p1 is the smaller proportion
+    p1.orig <- p1
+    p2.orig <- p2
+    p1 <- min(p1.orig, p2.orig)
+    p2 <- max(p1.orig, p2.orig)
     p01 <- p1 * (1 - p2) - phi * sqrt((1 - p2) * p1 * (1 - p1) * p2)
     p10 <- p01 + p2 - p1
     paid <- p01
