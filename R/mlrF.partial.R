@@ -12,7 +12,7 @@
 #'
 #' @param N The sample size.
 #' @param p The number of control predictors.
-#' @param q The number of test predictors. Must be 1 when only pc is specified.
+#' @param q The number of test predictors. Set to 1 when only pc is specified.
 #' @param Rsq.red The squared population multiple correlation coefficient for the reduced model. Either both Rsq terms OR pc must be specified.
 #' @param Rsq.full The squared population multiple correlation coefficient for the full model. Either both Rsq terms OR pc must be specified.
 #' @param pc The partial correlation coefficient. Either both Rsq terms OR pc must be specified.
@@ -36,8 +36,10 @@ mlrF.partial <- function (N = NULL, p = NULL, q = NULL, pc = NULL,
     stop("please specify the number of predictors")
   if ((is.null(Rsq.red) | is.null(Rsq.full)) & is.null(pc))
     stop("please specify Rsq.red and Rsq.full OR pc")
-  if (!is.null(pc) & (q != 1))
-    stop("q must be 1 if pc is specified")
+  if (!is.null(Rsq.red) & !is.null(Rsq.full) & !is.null(pc))
+    stop("please specify Rsq.red and Rsq.full OR pc")
+  if (!is.null(pc))
+    q <- 1
 
   check.many(list(N, alpha, power), "oneof")
   check.param(N, "pos"); check.param(N, "min", min = 7)
@@ -92,7 +94,7 @@ mlrF.partial <- function (N = NULL, p = NULL, q = NULL, pc = NULL,
                    alpha = alpha, power = power,
                    method = METHOD), class = "power.htest")
   } else {
-    structure(list(N = N, p = p, pc = pc,
+    structure(list(N = N, p = p, q = q, pc = pc,
                    alpha = alpha, power = power,
                    method = METHOD), class = "power.htest")
   }

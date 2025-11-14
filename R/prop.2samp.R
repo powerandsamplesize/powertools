@@ -42,30 +42,31 @@ prop.2samp <- function (n1 = NULL, n.ratio = 1, p1 = NULL, p2 = NULL, margin = 0
   check.param(sides, "req"); check.param(sides, "vals", valslist = c(1, 2))
   check.param(v, "req"); check.param(v, "bool")
 
-  # Calculate n1
+  # Calculate power
   p.body <- quote({
-    d <- abs(p1 - p2) - margin
+    d <- abs(p1 - p2 - margin)
     q1 <- 1 - p1
     q2 <- 1 - p2
-    ((stats::qnorm(alpha / sides) + stats::qnorm(1 - power))^2 *
-    (n.ratio * p1 * q1 + p2 * q2) / (n.ratio * d^2))
+    n2 <- n1 * n.ratio
+    h <- d / sqrt(p1 * q1 / n1 + p2 * q2 / n2)
+    (stats::pnorm(h + stats::qnorm(alpha / sides)))
   })
 
   # Use safe.uniroot function to calculate missing argument
-  if (is.null(n1)) {
-    n1 <- eval(p.body)
-    if (!v) return(n1)
-  }
-  else if (is.null(power)) {
-    power <- safe.uniroot(function(power) eval(p.body) - n1, c(1e-05, 0.99999))$root
+  if (is.null(power)) {
+    power <- eval(p.body)
     if (!v) return(power)
   }
+  else if (is.null(n1)) {
+    n1 <- safe.uniroot(function(n1) eval(p.body) - power, c(2 + 1e-10, 1e+09))$root
+    if (!v) return(n1)
+  }
   else if (is.null(n.ratio)) {
-    n.ratio <- safe.uniroot(function(n.ratio) eval(p.body) - n1, c(2/n1, 1e+07))$root
+    n.ratio <- safe.uniroot(function(n.ratio) eval(p.body) - power, c(2/n1, 1e+07))$root
     if (!v) return(n.ratio)
   }
   else if (is.null(alpha)) {
-    alpha <- safe.uniroot(function(alpha) eval(p.body) - n1, c(1e-10, 1 - 1e-10))$root
+    alpha <- safe.uniroot(function(alpha) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
     if (!v) return(alpha)
   }
   else stop("internal error")
