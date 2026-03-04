@@ -2,6 +2,7 @@
 #'
 #' @param matrix The matrix to be displayed.
 #' @param nspaces The number of white spaces before the matrix; defaults to 18.
+#' @param digits The maximum number of digits to display per cell.
 #'
 #' @return The matrix printed as a string with rows separated by newline.
 #' @keywords internal
@@ -11,7 +12,8 @@
 #' matrix <- matrix(c(1, 2, 3, 4), nrow = 2)
 #' matrix.format(matrix = matrix)
 
-matrix.format <- function (matrix = NULL, nspaces = 18) {
+matrix.format <- function (matrix = NULL, nspaces = 18, digits = 4) {
+  matrix <- round(matrix, digits = digits)
   mrows <- c()
   for (i in 1:nrow(matrix))
     mrows <- c(mrows, paste(matrix[i,], collapse = ', '))

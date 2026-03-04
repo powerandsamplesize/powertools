@@ -37,7 +37,7 @@ crt.parallel.cont(
 
 \item{icc1}{The intraclass correlation coefficient in arm 1; defaults to 0.}
 
-\item{icc2}{The intraclass correlation coefficient in arm 2; defaults to 0.}
+\item{icc2}{The intraclass correlation coefficient in arm 2; defaults to the value of icc1.}
 
 \item{ncov}{The number of cluster-level and individual-level covariates; defaults to 0.}
 

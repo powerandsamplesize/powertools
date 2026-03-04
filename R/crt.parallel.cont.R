@@ -12,7 +12,7 @@
 #' @param delta The difference between the intervention and control means under the alternative minus the difference under the null hypothesis.
 #' @param sd The total standard deviation of the outcome variable; defaults to 1.
 #' @param icc1 The intraclass correlation coefficient in arm 1; defaults to 0.
-#' @param icc2 The intraclass correlation coefficient in arm 2; defaults to 0.
+#' @param icc2 The intraclass correlation coefficient in arm 2; defaults to the value of icc1.
 #' @param RsqB The estimated proportion of total variance explained by cluster-level covariates; defaults to 0.
 #' @param RsqW The estimated proportion of total variance explained by individual-level covariates; defaults to 0.
 #' @param ncov The number of cluster-level and individual-level covariates; defaults to 0.
@@ -56,6 +56,9 @@ crt.parallel.cont <- function (m = NULL, m.sd = 0, J1 = NULL, J.ratio = 1, delta
   check.param(power, "unit")
   check.param(sides, "req"); check.param(sides, "vals", valslist = c(1, 2))
   check.param(v, "req"); check.param(v, "bool")
+
+  # If icc2 is missing, default to icc1
+  if (is.null(icc2)) icc2 <- icc1
 
   if ((RsqB > 0 | RsqW > 0) & ncov == 0)
     stop("please specify ncov or set RsqB & RsqW to 0")

@@ -4,12 +4,14 @@
 \alias{matrix.format}
 \title{Internal-use function for displaying matrices in function outputs}
 \usage{
-matrix.format(matrix = NULL, nspaces = 18)
+matrix.format(matrix = NULL, nspaces = 18, digits = 4)
 }
 \arguments{
 \item{matrix}{The matrix to be displayed.}
 
 \item{nspaces}{The number of white spaces before the matrix; defaults to 18.}
+
+\item{digits}{The maximum number of digits to display per cell.}
 }
 \value{
 The matrix printed as a string with rows separated by newline.
